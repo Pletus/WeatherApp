@@ -4,7 +4,7 @@ import "./App.css";
 
 function App() {
   // input field part
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState("Berlin");
   const handleInputChange = (event) => {
     setSearch(event.target.value);
   };
@@ -23,11 +23,13 @@ function App() {
     const fetchLocationData = async () => {
       try {
         const response = await axios.get(
-          `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=d9f0ef7dd56e7819e22250d866d5094c`
+          `http://api.openweathermap.org/geo/1.0/direct?q=${search}&limit=5&appid=${
+            import.meta.env.VITE_OPENWEATHERMAP_API_KEY
+          }`
         );
         // {import.meta.env.VITE_OPENWEATHERMAP_API_KEY} this is written in the .env file in the main directory of the project like this:
         // VITE_OPENWEATHERMAP_API_KEY=d9f0ef7dd56e7819e22250d866d5094c
-        setLocation(response.data[0]);
+        // setLocation(response.data[0]);
         setLat(response.data[0].lat.toFixed(2));
         setLon(response.data[0].lon.toFixed(2));
         setLoading(false);
@@ -47,7 +49,9 @@ function App() {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d9f0ef7dd56e7819e22250d866d5094c`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${
+            import.meta.env.VITE_OPENWEATHERMAP_API_KEY
+          }`
         );
         // {import.meta.env.VITE_OPENWEATHERMAP_API_KEY}
         setWeatherData(response.data);
@@ -82,7 +86,21 @@ function App() {
           />
         </button>
       </div>
-      {loading ? <p>Loading...</p> : error ? <p>Error:</p> : <div></div>}
+      {/* {loading ? <p>Loading...</p> : error ? <p>Error:</p> : <div></div>} */}
+      {weatherData ? (
+        <>
+          {/* <p>{weatherData.list[0].weather[0].description}</p> */}
+          <h2>{weatherData.city.name}</h2>
+          <p>Temperature: {weatherData.list[0].main.temp}°C</p>
+          <p>Description: {weatherData.list[0].weather[0].description}</p>
+          <p>Feels like : {weatherData.list[0].main.feels_like}°C</p>
+          <p>Humidity : {weatherData.list[0].main.humidity}%</p>
+          <p>Pressure : {weatherData.list[0].main.pressure}</p>
+          <p>Wind Speed : {weatherData.list[0].wind.speed}m/s</p>
+        </>
+      ) : (
+        <p>Loading weather data...</p>
+      )}
     </>
   );
 }
