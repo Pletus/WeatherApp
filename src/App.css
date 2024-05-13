@@ -1,3 +1,11 @@
-#root {
-  text-align: center;
+.card-container{
+  display:flex;
+  flex-direction: column;
+}
+
+.secondColumn{
+  align-self: center;
+}
+.weatherImg{
+
 }

@@ -1,12 +1,13 @@
-import { useState } from 'react'
+
 import './App.css'
+import Today from "./components/Today"
 
 function App() {
-  const [count, setCount] = useState(0)
+
 
   return (
     <>
-
+    <Today />
     </>
   )
 }
