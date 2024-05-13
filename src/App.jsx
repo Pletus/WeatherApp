@@ -47,7 +47,7 @@ function App() {
     const fetchWeatherData = async () => {
       try {
         const response = await axios.get(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=d9f0ef7dd56e7819e22250d866d5094c`
+          `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=d9f0ef7dd56e7819e22250d866d5094c`
         );
         // {import.meta.env.VITE_OPENWEATHERMAP_API_KEY}
         setWeatherData(response.data);
