@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
+import Today from "./components/Today"
 
 function App() {
   // input field part
@@ -81,8 +82,10 @@ function App() {
             alt="Search City Button"
           />
         </button>
+
       </div>
-      {loading ? <p>Loading...</p> : error ? <p>Error:</p> : <div></div>}
+      {loading ? <p>Loading...</p> : error ? <p>Error:</p> : <div><Today weatherData={weatherData} /></div>}
+
     </>
   );
 }

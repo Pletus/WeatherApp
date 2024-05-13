@@ -1,4 +1,4 @@
-import Sunny from "../assets/SunnyImg.svg"
+
 import Cloudy from "../assets/Cloudy.mp4"
 
 //  function Today({weatherData, Today, City}){
@@ -46,8 +46,8 @@ import Cloudy from "../assets/Cloudy.mp4"
 // }
 // export default Today
 
-function Today({ weather }) {
-    const { city, temperature, description, weatherCondition } = weather;
+function Today({weatherData, Today, City}){
+    
   
     return (
       <div className="card-container lg:w-1/2 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col lg:flex-row justify-between leading-normal">
@@ -65,7 +65,7 @@ function Today({ weather }) {
   
         <div className="secondColumn lg:w-1/2 lg:pr-4">
           <h2 className="h2Card text-gray-900 font-bold text-xl mb-2">Today's Weather</h2>
-          <p>{city}</p>
+          <p>{City}</p>
           <p> {temperature}°C</p>
           <p>{description}</p>
         </div>
