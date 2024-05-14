@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 
+
 function App() {
   // input field part
   const [search, setSearch] = useState("Warsaw");
@@ -93,6 +94,34 @@ function App() {
       {/* {loading ? <p>Loading...</p> : error ? <p>Error:</p> : <div></div>} */}
       {weatherData ? (
         <>
+        <div className="card-container shadow-lg lg:w-1/2 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col lg:flex-row justify-between leading-normal">
+            <div className="weatherImg lg:w-1/2">
+              <video src="./assets/Sunny.svg" className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" autoPlay muted loop/>
+             </div>
+            
+            <div className="secondColumn lg:w-1/2 lg:pr-4"> 
+                <h2 className="h2Card text-gray-900 font-bold text-xl mb-2">Today's Weather</h2>
+                 <p> {weatherData.city.name}</p>
+                 <p>{weatherData.list[0].main.temp}°C</p>
+                 <p>{weatherData.list[0].weather[0].description}</p>
+                 <p>Feels like : {weatherData.list[0].main.feels_like}°C</p>
+                  <p>
+                    Humidity : {weatherData.list[0].main.humidity}%
+                  </p>
+                  <p>
+                    Pressure : {weatherData.list[0].main.pressure}
+                  </p>
+                  <p>
+                    Wind Speed : {weatherData.list[0].wind.speed}m/s
+                  </p>
+             </div>
+            
+       </div>
+        {/* <div className="card-container shadow-lg lg:w-1/2 border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col lg:flex-row justify-between leading-normal">
+        <div className="weatherImg lg:w-1/2">
+          <img src={Sunny} className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"/>
+
+          </div>
           <h2 className="border-2 border-indigo-300 little-card rounded-2xl p-4 flex flex-col gap-6 drop-shadow-lg">
             {weatherData.city.name}
           </h2>
@@ -114,6 +143,7 @@ function App() {
           <p className="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden">
             Wind Speed : {weatherData.list[0].wind.speed}m/s
           </p>
+          </div> */}
 
           {/* <div>
             <div className="border-2 border-indigo-300 little-card rounded-2xl p-4 flex flex-col gap-6 drop-shadow-lg">
